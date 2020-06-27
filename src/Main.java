@@ -1,4 +1,5 @@
 import model.User;
+
 // Hints:
 // CTRL + D - duplikowanie lini kodu
 // ALT + Ins - auto-generowanie fragmentów kodu
@@ -7,7 +8,9 @@ import model.User;
 public class Main {
     public static void main(String[] args) {
         // utowrzenie obiektu
-        User u1 = new User();
+        User u1 = new User(
+                "Michał", "Kruczkowski",
+                "mk@mk.pl", "mk", 'M');
         User u2 = new User();
         // wywołanie setterów
         u1.setName("Michał");

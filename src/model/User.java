@@ -3,6 +3,8 @@ import java.time.LocalDateTime;
 // Model JavaBeans - wzorzec struktury składowych klasy
 // 1. Wszystkie pola są prywatne
 // 2. Publiczne gettery i settery - metody dostępowe
+// 3. Konstruktor/y
+// 4. Publiczna metoda ToString()
 // Klasa User - to klasa modelu -> klasa determinująca strukturę danych
 public class User extends Object{   // Każda klasa dziedziczy - prejmuje pola i metody klasy nadrzędnej
                                     // (zgodnie ze specyfikatorami dostępu)
@@ -15,6 +17,28 @@ public class User extends Object{   // Każda klasa dziedziczy - prejmuje pola i
     private char gender;            // domyślnie ''
     private LocalDateTime registratationDateTime;   // domyślnie null
     private boolean status;         // domyślnie false
+    // gdy nie ma innego kontruktora to zawsze jest tworzony konstruktor domyślny
+    public User() {
+        System.out.println("Jestem w konstruktorze domyślnym");
+    }
+    // konstruktor z wybranymi argumentami
+    // Cel: przypisanie wartości z argumentów do pól klasowych
+    public User(String name, String lastName, String email, String password, char gender) {
+        this.name = name;           // przypisanie do pola klasowego wartości z argumentu
+        // this.name -> przypisanie do pola name obiektu który został utworzony wartości z argumentu
+        // this -> jest odwołaniem do obiektu czyli jego lokalizacji w pamięci podręcznej
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.gender = gender;
+        // przypisanie domyślnego - aktualnego czasu rejestracji
+        this.registratationDateTime = LocalDateTime.now();
+        // przypisanie domyślnego statusu konta na true
+        this.status = true;
+        // przypisanie unikatowego identyfikatora użytkownika
+        this.userId = 1;
+        System.out.println("Jestem w konstruktorze z argumentami");
+    }
 
     // Gettery i Settery
     public int getUserId() {
