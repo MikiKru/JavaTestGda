@@ -54,7 +54,7 @@ public class UserController implements UserControllerTemplate{
         uc.registerUser(new User("Z","Z","z@z.pl","z",'M'));
         System.out.println("Wypisanie wszystkich użytkowników:");
         uc.printAllUsers();
-        // Wyrażenie 3-argumentowe
+        // Wyrażenie 3-argumentowe: warunek ? wartość zwracana jeżeli true : wartość zwracana jeżeli false
         String login = "z@z.pl";
         String password = "z";
         System.out.println(uc.loginUser(login,password) ? "zalogowano: "+login : "błąd logowania");
