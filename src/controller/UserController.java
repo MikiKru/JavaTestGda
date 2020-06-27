@@ -114,6 +114,13 @@ public class UserController implements UserControllerTemplate{
                     System.out.println(uc.loginUser(logEmail,logPassword) ? "zalogowano: "+logEmail : "błąd logowania");
                     break;
                 case 3:
+                    System.out.println("Podaj id użytkownika");
+                    int userId = scanner.nextInt();
+                    scanner.nextLine();             // konsumujemy \n
+                    System.out.println("Podaj nowe hasło");
+                    String newPassword = scanner.nextLine();
+                    uc.updatePasswordByUserId(userId, newPassword);
+                    System.out.println("Zapisano nowe hasło");
                     break;
                 case 4:
                     uc.printAllUsers();
@@ -127,7 +134,7 @@ public class UserController implements UserControllerTemplate{
         }
 
 
-//        uc.updatePasswordByUserId(10, "qwe123");
+
 
     }
 }
