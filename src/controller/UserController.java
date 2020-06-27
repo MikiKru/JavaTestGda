@@ -45,8 +45,17 @@ public class UserController implements UserControllerTemplate{
     }
     @Override
     public void updatePasswordByUserId(int userId, String newPassword) {
-        User user = findUserById(userId);
-        user.setPassword(newPassword);
+        try {                                       // try{ zawiera linijki kodu w których może wystąpić wyjątek }
+            User user = findUserById(userId);       // jeżeli wystąpi wyjątek przechodzimy do bloku catch
+            user.setPassword(newPassword);          // jeżeli nie wystąpi wyjątek blok catch się nie wykonuje
+        } catch(NullPointerException e){            // argumentem w bloku catch jest klasa wyjątku
+            System.out.println("Nie ma użytkownika o id=" + userId);
+            e.printStackTrace();                    // metoda drukująca na konsoli systemowy komunikat błędu
+        } catch (Exception e){
+            System.out.println("Wystąpił jakiś błąd?!");
+        } finally {                                 // wykonywane jest zawsze niezależnie czy wystąpił błąd czy nie
+            System.out.println("Jestem w finally");
+        }
     }
     // metoda nie znajdująca się w interfejsie
     public User findUserById(int userId){
@@ -70,8 +79,8 @@ public class UserController implements UserControllerTemplate{
         String password = "z";
         System.out.println(uc.loginUser(login,password) ? "zalogowano: "+login : "błąd logowania");
         System.out.println("Zmiana hasła");
-        uc.updatePasswordByUserId(1, "qwe123");
-        System.out.println(uc.findUserById(1).getPassword());
-        System.out.println(uc.loginUser("x@x.pl","qwe123"));
+        uc.updatePasswordByUserId(10, "qwe123");
+//        System.out.println(uc.findUserById(10).getPassword());
+        System.out.println("Jeszcze działam!");
     }
 }
