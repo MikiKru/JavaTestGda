@@ -1,5 +1,6 @@
 package controller;
 
+import exception.MyException;
 import model.User;
 
 import java.util.ArrayList;
@@ -47,12 +48,18 @@ public class UserController implements UserControllerTemplate{
     public void updatePasswordByUserId(int userId, String newPassword) {
         try {                                       // try{ zawiera linijki kodu w których może wystąpić wyjątek }
             User user = findUserById(userId);       // jeżeli wystąpi wyjątek przechodzimy do bloku catch
+            if(user == null) {
+                throw new MyException();            // rzucanie wyjątku -> utworzenie obiektu klasy wyjątku
+            }
             user.setPassword(newPassword);          // jeżeli nie wystąpi wyjątek blok catch się nie wykonuje
-        } catch(NullPointerException e){            // argumentem w bloku catch jest klasa wyjątku
-            System.out.println("Nie ma użytkownika o id=" + userId);
-            e.printStackTrace();                    // metoda drukująca na konsoli systemowy komunikat błędu
-        } catch (Exception e){
-            System.out.println("Wystąpił jakiś błąd?!");
+        } catch (MyException e){
+            System.out.println("Obsługa mojego wyjątku");
+            e.printStackTrace();
+//        } catch(NullPointerException e){            // argumentem w bloku catch jest klasa wyjątku
+//            System.out.println("Nie ma użytkownika o id=" + userId);
+//            e.printStackTrace();                    // metoda drukująca na konsoli systemowy komunikat błędu
+//        } catch (Exception e){
+//            System.out.println("Wystąpił jakiś błąd?!");
         } finally {                                 // wykonywane jest zawsze niezależnie czy wystąpił błąd czy nie
             System.out.println("Jestem w finally");
         }
