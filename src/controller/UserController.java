@@ -5,6 +5,7 @@ import model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 // UserController - klasa kontrolera -> klasa obsługująca i dostarczająca logikę biznesową aplikacji
 public class UserController implements UserControllerTemplate{
@@ -79,15 +80,39 @@ public class UserController implements UserControllerTemplate{
         uc.registerUser(new User("X","X","x@x.pl","x",'K'));
         uc.registerUser(new User("Y","Y","y@y.pl","y",'M'));
         uc.registerUser(new User("Z","Z","z@z.pl","z",'M'));
-        System.out.println("Wypisanie wszystkich użytkowników:");
-        uc.printAllUsers();
-        // Wyrażenie 3-argumentowe: warunek ? wartość zwracana jeżeli true : wartość zwracana jeżeli false
-        String login = "z@z.pl";
-        String password = "z";
-        System.out.println(uc.loginUser(login,password) ? "zalogowano: "+login : "błąd logowania");
-        System.out.println("Zmiana hasła");
-        uc.updatePasswordByUserId(10, "qwe123");
-//        System.out.println(uc.findUserById(10).getPassword());
-        System.out.println("Jeszcze działam!");
+        // CLI - command line interface
+        Scanner scanner = new Scanner(System.in);
+        boolean isRun = true;
+        while(isRun) {
+            System.out.println("APLIKACJA X");
+            System.out.println("1. rejestracja\n2. logowanie \n3. zmiana hasła \n4. pokaż wszystkich \n0. wyjście");
+            int choice = scanner.nextInt();
+            scanner.nextLine();         // instrukcja konsumująca \n po wprowadzonej liczbie - tak aby nie przesuwać kursora w konsoli
+            switch (choice) {
+                case 1:
+                    break;
+                case 2:
+                    System.out.println("Podaj email: ");
+                    String login = scanner.nextLine();
+                    System.out.println("Podaj hasło: ");
+                    String password = scanner.nextLine();
+                    System.out.println(uc.loginUser(login,password) ? "zalogowano: "+login : "błąd logowania");
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    uc.printAllUsers();
+                    break;
+                case 0:
+                    isRun = false;
+                    break;
+                default:
+                    System.out.println("Błędny wybór");
+            }
+        }
+
+
+//        uc.updatePasswordByUserId(10, "qwe123");
+
     }
 }
