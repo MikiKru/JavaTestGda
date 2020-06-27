@@ -69,5 +69,9 @@ public class UserController implements UserControllerTemplate{
         String login = "z@z.pl";
         String password = "z";
         System.out.println(uc.loginUser(login,password) ? "zalogowano: "+login : "błąd logowania");
+        System.out.println("Zmiana hasła");
+        uc.updatePasswordByUserId(1, "qwe123");
+        System.out.println(uc.findUserById(1).getPassword());
+        System.out.println(uc.loginUser("x@x.pl","qwe123"));
     }
 }
