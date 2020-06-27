@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 // Klasa User - to klasa modelu -> klasa determinująca strukturę danych
 public class User extends Object{   // Każda klasa dziedziczy - prejmuje pola i metody klasy nadrzędnej
                                     // (zgodnie ze specyfikatorami dostępu)
+    // pole statyczne -> pole globalne wspólne dla wszystkich obiektów
+    private static int globalId = 0;       // pole przechowujące ostatnią wprowadzoną wartość id
     // pola klasowe -> pola o zasięgu widoczności w obrębie całej klasy
     private int userId;             // domyślnie 0
     private String name;            // domyślnie null
@@ -36,7 +38,8 @@ public class User extends Object{   // Każda klasa dziedziczy - prejmuje pola i
         // przypisanie domyślnego statusu konta na true
         this.status = true;
         // przypisanie unikatowego identyfikatora użytkownika
-        this.userId = 1;
+        globalId ++; // globalId = globalId + 1;
+        this.userId = globalId;
         System.out.println("Jestem w konstruktorze z argumentami");
     }
 

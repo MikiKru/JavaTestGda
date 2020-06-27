@@ -38,5 +38,9 @@ public class Main {
         u4.setEmail("test@test.pl");
         System.out.println(u1.toString());
         System.out.println(u4.toString());
+        User u5 = new User("X","X","x@x.pl","X",'M');
+        System.out.println(u5);
+        User u6 = new User("X","X","x@x.pl","X",'M');
+        System.out.println(u6);
     }
 }
