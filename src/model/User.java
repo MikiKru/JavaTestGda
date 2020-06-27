@@ -1,7 +1,4 @@
 package model;
-// Hints:
-// CTRL + D - duplikowanie lini kodu
-// ALT + Ins - auto-generowanie fragmentów kodu
 import java.time.LocalDateTime;
 
 // Klasa User - to klasa modelu -> klasa determinująca strukturę danych
