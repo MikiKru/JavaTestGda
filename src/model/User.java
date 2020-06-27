@@ -6,7 +6,7 @@ public class User extends Object{   // Każda klasa dziedziczy - prejmuje pola i
                                     // (zgodnie ze specyfikatorami dostępu)
     // pola klasowe -> pola o zasięgu widoczności w obrębie całej klasy
     int userId;             // domyślnie 0
-    String name;            // domyślnie null
+    public String name;            // domyślnie null
     String lastName;        // domyślnie null
     String email;           // domyślnie null
     String password;        // domyślnie null
