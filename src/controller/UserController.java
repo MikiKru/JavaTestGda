@@ -3,6 +3,10 @@ package controller;
 import exception.MyException;
 import model.User;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -74,6 +78,31 @@ public class UserController implements UserControllerTemplate{
         }
         return null;    // gdy nie znaleziono użytkownika zwróć null -> brak wartości
     }
+    public void saveToFile(){
+        try {
+            // Klasa dedykowana do zapisu do pliku określonego ścieżką bezpośrednią
+            PrintWriter pw = new PrintWriter(new File("C:\\Users\\PROXIMO\\Desktop\\TestGDA\\JavaBasic\\src\\file\\users.csv"));
+            for (User user : users) {
+                pw.write(user.getUserId()+";"+user.getName()+";"+user.getLastName()+";"+user.getEmail()
+                +";"+user.getPassword()+";"+user.getGender());
+            }
+            pw.close();             // zamknięcie pliku
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public void readFromFile(){
+        try {
+            Scanner scanner = new Scanner(new File("C:\\Users\\PROXIMO\\Desktop\\TestGDA\\JavaBasic\\src\\file\\users.csv"));
+            while (scanner.hasNextLine()){  // jeżeli istnieje kolejna linijka w pliku to przesuń kursor
+                String line [] = scanner.nextLine().split(";");
+                users.add(new User(line[1], line[2], line[3], line[4], line[5].charAt(0)));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) {
         UserController uc = new UserController();
