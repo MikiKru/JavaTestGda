@@ -84,7 +84,7 @@ public class UserController implements UserControllerTemplate{
             PrintWriter pw = new PrintWriter(new File("C:\\Users\\PROXIMO\\Desktop\\TestGDA\\JavaBasic\\src\\file\\users.csv"));
             for (User user : users) {
                 pw.write(user.getUserId()+";"+user.getName()+";"+user.getLastName()+";"+user.getEmail()
-                +";"+user.getPassword()+";"+user.getGender());
+                +";"+user.getPassword()+";"+user.getGender()+"\n");
             }
             pw.close();             // zamknięcie pliku
         } catch (FileNotFoundException e) {
@@ -106,10 +106,11 @@ public class UserController implements UserControllerTemplate{
 
     public static void main(String[] args) {
         UserController uc = new UserController();
-        uc.registerUser(new User("X","X","x@x.pl","x",'K'));
-        uc.registerUser(new User("Y","Y","y@y.pl","y",'M'));
-        uc.registerUser(new User("Z","Z","z@z.pl","z",'M'));
+//        uc.registerUser(new User("X","X","x@x.pl","x",'K'));
+//        uc.registerUser(new User("Y","Y","y@y.pl","y",'M'));
+//        uc.registerUser(new User("Z","Z","z@z.pl","z",'M'));
         // CLI - command line interface
+        uc.readFromFile();                          // odczytujemy zawartośc z pliku i przepisujemy do listy users
         Scanner scanner = new Scanner(System.in);
         boolean isRun = true;
         while(isRun) {
@@ -156,6 +157,7 @@ public class UserController implements UserControllerTemplate{
                     break;
                 case 0:
                     isRun = false;
+                    uc.saveToFile();                    // zapis aktualnych danych do pliku
                     break;
                 default:
                     System.out.println("Błędny wybór");
