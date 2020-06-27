@@ -90,13 +90,28 @@ public class UserController implements UserControllerTemplate{
             scanner.nextLine();         // instrukcja konsumująca \n po wprowadzonej liczbie - tak aby nie przesuwać kursora w konsoli
             switch (choice) {
                 case 1:
-                    break;
-                case 2:
+                    System.out.println("Podaj imię: ");
+                    String name = scanner.nextLine();
+                    System.out.println("Podaj nazwisko: ");
+                    String lastName = scanner.nextLine();
                     System.out.println("Podaj email: ");
                     String login = scanner.nextLine();
                     System.out.println("Podaj hasło: ");
                     String password = scanner.nextLine();
-                    System.out.println(uc.loginUser(login,password) ? "zalogowano: "+login : "błąd logowania");
+                    System.out.println("Podaj płeć (M/K): ");
+                    char gender = scanner.nextLine().toUpperCase().charAt(0);
+                    if(gender == 'M' || gender == 'K') {
+                        uc.registerUser(new User(name, lastName, login, password, gender));
+                    } else {
+                        System.out.println("Płeć musi być opisana M lub K");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Podaj email: ");
+                    String logEmail = scanner.nextLine();
+                    System.out.println("Podaj hasło: ");
+                    String logPassword = scanner.nextLine();
+                    System.out.println(uc.loginUser(logEmail,logPassword) ? "zalogowano: "+logEmail : "błąd logowania");
                     break;
                 case 3:
                     break;
