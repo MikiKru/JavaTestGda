@@ -44,8 +44,19 @@ public class UserController implements UserControllerTemplate{
         return false;
     }
     @Override
-    public void updatePasswordByUserId(int userId, String newPassword) { }
-
+    public void updatePasswordByUserId(int userId, String newPassword) {
+        User user = findUserById(userId);
+        user.setPassword(newPassword);
+    }
+    // metoda nie znajdująca się w interfejsie
+    public User findUserById(int userId){
+        for (User user : users){
+            if(user.getUserId() == userId){
+                return user;
+            }
+        }
+        return null;    // gdy nie znaleziono użytkownika zwróć null -> brak wartości
+    }
 
     public static void main(String[] args) {
         UserController uc = new UserController();
